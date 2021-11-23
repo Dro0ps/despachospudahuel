@@ -36,10 +36,6 @@ const Home = ({correoUsuario}) => {
         {id: 1, descripcion: "Tarea Falsa 1", url: "https://picsum.photos/420"},
         {id: 2, descripcion: "Tarea Falsa 2", url: "https://picsum.photos/420"},
         {id: 3, descripcion: "Tarea Falsa 3", url: "https://picsum.photos/420"},
-        {id: 4, descripcion: "Tarea Falsa 4", url: "https://picsum.photos/420"},
-        {id: 5, descripcion: "Tarea Falsa 5", url: "https://picsum.photos/420"},
-
-
 
     ];
 
@@ -57,7 +53,7 @@ const Home = ({correoUsuario}) => {
             return infoDocu.tareas;
         } else {
         // Si no existe crea un documento
-            await setDoc(docuRef, {reacciones: [...fakeData]});
+            await setDoc(docuRef, {tareas: [...fakeData]});
         // Una vez creado se realiza la consulta nuevamente
         const consulta = await getDoc(docuRef);
         const infoDocu = consulta.data();
@@ -78,10 +74,20 @@ const Home = ({correoUsuario}) => {
 
         <hr/>
 
-        <AgregarTareas/>
+        <AgregarTareas
+            arrayTareas={arrayTareas}
+            setArrayTareas={setArrayTareas}
+            correoUsuario={correoUsuario}
+        />
         <hr/>
 
-        {arrayTareas ? <ListadoTareas arrayTareas={arrayTareas}/> : null}
+        {arrayTareas ? 
+        <ListadoTareas 
+            arrayTareas={arrayTareas}
+            setArrayTareas={setArrayTareas}
+            correoUsuario={correoUsuario}
+            
+        />: null}
        
     
     
